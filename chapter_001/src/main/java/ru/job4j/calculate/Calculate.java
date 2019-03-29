@@ -1,11 +1,11 @@
 package ru.job4j.calculate;
 /**
-*Calculate class
+*Calculate  class
 */
 public class Calculate{
 /**
 *Main
-*@param args - args
+*@param args  - args
 */
 	public static void main(String args[]){
 			System.out.println("Hello, world!");
