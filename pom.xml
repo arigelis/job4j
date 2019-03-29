@@ -15,5 +15,6 @@
 
     <modules>
        <module>chapter_001</module>
+	   <module>java-a-to-z</module>
      </modules>
 </project>
