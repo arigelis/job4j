@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
  * @version $1$
  * @since 29.03.2019
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class CalculateTest {
 /**
 /*Test echo!
@@ -19,7 +20,7 @@ public class CalculateTest {
 	@Test
 	 public void whenTakeNameThenThreeEchoPlusName() {
 		String input = "fedor";
-		String expect = "Echo, echo, echo : fedor"; 
+		String expect = "Echo, echo, echo : fedor";
 		Calculate calc = new Calculate();
 		String result = calc.echo(input);
 		assertThat(result, is(expect));

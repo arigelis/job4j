@@ -1,4 +1,4 @@
-package main.java.ru.parsentev;
+package ruparsentev;
 
 public class Calculate{
 	public String echo(String txt){
