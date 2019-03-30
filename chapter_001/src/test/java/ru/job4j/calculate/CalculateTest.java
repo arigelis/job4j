@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
  * @version $1$
  * @since 29.03.2019
  */
-public class CalculateTest  {
+public class CalculateTest {
 /**
 /*Test echo!
 */
