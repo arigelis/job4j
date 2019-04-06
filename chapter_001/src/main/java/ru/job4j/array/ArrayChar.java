@@ -22,7 +22,8 @@ public class ArrayChar {
         char[] value = prefix.toCharArray();
         for (int i = 0; i < prefix.length(); i++) {
             if (value[i] != data[i]) {
-                return false;
+                result = false;
+                break;
             }
         }
         return result;
