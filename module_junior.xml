@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_junior" default="compile.module.junior">
+  <dirname property="module.junior.basedir" file="${ant.file.module_junior}"/>
+  
+  <property name="module.jdk.home.junior" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.junior" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.junior" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.junior" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="junior.output.dir" value="${module.junior.basedir}/target/classes"/>
+  <property name="junior.testoutput.dir" value="${module.junior.basedir}/target/test-classes"/>
+  
+  <path id="junior.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="junior.module.production.classpath">
+    <path refid="${module.jdk.classpath.junior}"/>
+  </path>
+  
+  <path id="junior.runtime.production.module.classpath">
+    <pathelement location="${junior.output.dir}"/>
+  </path>
+  
+  <path id="junior.module.classpath">
+    <path refid="${module.jdk.classpath.junior}"/>
+    <pathelement location="${junior.output.dir}"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-all:1.3.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  <path id="junior.runtime.module.classpath">
+    <pathelement location="${junior.testoutput.dir}"/>
+    <pathelement location="${junior.output.dir}"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-all:1.3.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.junior">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.junior">
+    <patternset refid="excluded.from.module.junior"/>
+  </patternset>
+  
+  
+  <target name="compile.module.junior" depends="compile.module.junior.production,compile.module.junior.tests" description="Compile module junior"/>
+  
+  <target name="compile.module.junior.production" depends="register.custom.compilers" description="Compile module junior; production classes"/>
+  
+  <target name="compile.module.junior.tests" depends="register.custom.compilers,compile.module.junior.production" description="compile module junior; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.junior" description="cleanup module">
+    <delete dir="${junior.output.dir}"/>
+    <delete dir="${junior.testoutput.dir}"/>
+  </target>
+</project>
