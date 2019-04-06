@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_chapter_001" default="compile.module.chapter_001">
+  <dirname property="module.chapter_001.basedir" file="${ant.file.module_chapter_001}"/>
+  
+  <property name="module.jdk.home.chapter_001" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.chapter_001" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.chapter_001" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.chapter_001" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="chapter_001.output.dir" value="${module.chapter_001.basedir}/target/classes"/>
+  <property name="chapter_001.testoutput.dir" value="${module.chapter_001.basedir}/target/test-classes"/>
+  
+  <path id="chapter_001.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="chapter_001.module.production.classpath">
+    <path refid="${module.jdk.classpath.chapter_001}"/>
+  </path>
+  
+  <path id="chapter_001.runtime.production.module.classpath">
+    <pathelement location="${chapter_001.output.dir}"/>
+  </path>
+  
+  <path id="chapter_001.module.classpath">
+    <path refid="${module.jdk.classpath.chapter_001}"/>
+    <pathelement location="${chapter_001.output.dir}"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-all:1.3.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  <path id="chapter_001.runtime.module.classpath">
+    <pathelement location="${chapter_001.testoutput.dir}"/>
+    <pathelement location="${chapter_001.output.dir}"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-all:1.3.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.chapter_001">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.chapter_001">
+    <patternset refid="excluded.from.module.chapter_001"/>
+  </patternset>
+  
+  <path id="chapter_001.module.sourcepath">
+    <dirset dir="${module.chapter_001.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="chapter_001.module.test.sourcepath">
+    <dirset dir="${module.chapter_001.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.chapter_001" depends="compile.module.chapter_001.production,compile.module.chapter_001.tests" description="Compile module chapter_001"/>
+  
+  <target name="compile.module.chapter_001.production" depends="register.custom.compilers" description="Compile module chapter_001; production classes">
+    <mkdir dir="${chapter_001.output.dir}"/>
+    <javac2 destdir="${chapter_001.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.chapter_001}/javac">
+      <compilerarg line="${compiler.args.chapter_001}"/>
+      <bootclasspath refid="chapter_001.module.bootclasspath"/>
+      <classpath refid="chapter_001.module.production.classpath"/>
+      <src refid="chapter_001.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.chapter_001"/>
+    </javac2>
+    
+    <copy todir="${chapter_001.output.dir}">
+      <fileset dir="${module.chapter_001.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.chapter_001.tests" depends="register.custom.compilers,compile.module.chapter_001.production" description="compile module chapter_001; test classes" unless="skip.tests">
+    <mkdir dir="${chapter_001.testoutput.dir}"/>
+    <javac2 destdir="${chapter_001.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.chapter_001}/javac">
+      <compilerarg line="${compiler.args.chapter_001}"/>
+      <bootclasspath refid="chapter_001.module.bootclasspath"/>
+      <classpath refid="chapter_001.module.classpath"/>
+      <src refid="chapter_001.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.chapter_001"/>
+    </javac2>
+    
+    <copy todir="${chapter_001.testoutput.dir}">
+      <fileset dir="${module.chapter_001.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.chapter_001" description="cleanup module">
+    <delete dir="${chapter_001.output.dir}"/>
+    <delete dir="${chapter_001.testoutput.dir}"/>
+  </target>
+</project>
