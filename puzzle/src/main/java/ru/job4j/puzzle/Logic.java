@@ -109,6 +109,8 @@ public class Logic {
             if (horizontal == table.length || vertical == table.length) {
                 result = true;
                 break;
+            } else {
+                horizontal = vertical = 0;
             }
         }
 
