@@ -8,6 +8,7 @@ public class BubbleSort {
                     int buf = array[i];
                     array[i] = array[i - 1];
                     array[i - 1] = buf;
+                    i = j;
                 }
             }
         }
