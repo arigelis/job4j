@@ -69,33 +69,49 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        int vertical = 0, horizontal = 0, verticalIndex = 0;
-        boolean win = false;
+        int vertical = 0, horizontal = 0;//, verticalIndex = 0;
+//        boolean win = false;
+//        for (int i = 0; i < table.length; i++) {
+//            if (win) {
+//                break;
+//            }
+//            horizontal = 0;
+//            for (int j = 0; j < table[i].length; j++) {
+//                if (table[i][j] == 1) {
+//                    horizontal++;
+//                    if (verticalIndex == 0) {
+//                        verticalIndex = j;
+//                    }
+//                    if (j == verticalIndex) {
+//                        vertical++;
+//                    }
+//                }
+//                if (horizontal == table.length) {
+//                    result = true;
+//                    win = true;
+//                    break;
+//                }
+//            }
+//        }
+//        if (vertical == table.length) {
+//            result = true;
+//        }
+
         for (int i = 0; i < table.length; i++) {
-            if (win) {
+            for (int j = 0; j < table.length; j++) {
+                if (table[i][j] == 1) {
+                    vertical++;
+                }
+                if (table[j][i] == 1) {
+                    horizontal++;
+                }
+            }
+            if (horizontal == table.length || vertical == table.length) {
+                result = true;
                 break;
             }
-            horizontal = 0;
-            for (int j = 0; j < table[i].length; j++) {
-                if (table[i][j] == 1) {
-                    horizontal++;
-                    if (verticalIndex == 0) {
-                        verticalIndex = j;
-                    }
-                    if (j == verticalIndex) {
-                        vertical++;
-                    }
-                }
-                if (horizontal == 5) {
-                    result = true;
-                    win = true;
-                    break;
-                }
-            }
         }
-        if (vertical == 5) {
-            result = true;
-        }
+
         return result;
     }
 
