@@ -50,7 +50,8 @@
        <module>chapter_001</module>
 	   <module>java-a-to-z</module>
 	   <module>puzzle</module>
-     </modules>
+        <module>junior</module>
+    </modules>
 	 
 <dependencies>
     <dependency>
