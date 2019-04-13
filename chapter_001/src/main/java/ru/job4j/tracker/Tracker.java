@@ -70,15 +70,16 @@ public class Tracker {
      * @return item[]
      */
     public Item[] findAll() {
-        int nullQuantity = 0;
-        for (int i = 0; i < items.length - nullQuantity; i++) {
+        position = items.length - 1;
+        for (int i = 0; i < items.length; i++) {
             if (items[i] == null) {
-                items[i] = items[items.length - 1 - nullQuantity];
-                nullQuantity++;
+                items[i] = items[i + 1];
+                position--;
             }
         }
-        System.arraycopy(items, 0, items, 0, items.length - 1 - nullQuantity);
+//        System.arraycopy(items, 0, items, 0, items.length - 1 - nullQuantity);
         return this.items;
+
     }
 
     /**
@@ -86,20 +87,20 @@ public class Tracker {
      * @return item[]
      */
     public Item[] findByName(String key) {
-        int confirmed = 0;
+        position = 0;
         Item addArray[] = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName().equalsIgnoreCase(key)) {
-                addArray[confirmed] = items[i];
-                confirmed++;
+                addArray[position] = items[i];
+                position++;
             }
         }
-        System.arraycopy(addArray, 0, addArray, 0, confirmed);
-        return addArray;
+        return addArray;//Arrays.copyOf(addArray, this.position);
+//        System.arraycopy(addArray, 0, addArray, 0, confirmed);
+//        return addArray;
     }
 
     /**
-     *
      * @param id id
      * @return Item
      */
