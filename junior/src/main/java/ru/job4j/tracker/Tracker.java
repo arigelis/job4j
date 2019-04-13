@@ -39,6 +39,7 @@ public class Tracker {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getId().equalsIgnoreCase(id)) {
                 items[i] = item;
+                items[i].setId(id);
                 result = true;
                 break;
             }
@@ -56,17 +57,23 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < items.length; i++) {
-            if (result) {
-                items[i - 1] = items[i];
-                continue;
-            }
-            if (items[i].getId().equalsIgnoreCase(id)) {
+        for (int i = 0; i < this.position; i++) {
+            if (items[i].getId().equals(id)) {
+                System.arraycopy(items, i + 1, items, i, position - i - 1);
+                items[position--] = null;
                 result = true;
+                break;
             }
+//            if (result) {
+//                items[i - 1] = items[i];
+//                continue;
+//            }
+//            if (items[i].getId().equalsIgnoreCase(id)) {
+//                result = true;
+//            }
         }
 
-        System.arraycopy(items, 0, items, 0, items.length - 1);
+//        System.arraycopy(items, 0, items, 0, items.length - 1);
         return result;
     }
 
@@ -76,17 +83,18 @@ public class Tracker {
      * @return item[]
      */
     public Item[] findAll() {
-        position = 0;
-        Item[] itemNotNull = new Item[items.length];
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                itemNotNull[position] = items[i];
-                position++;
-            }
-        }
-//        System.arraycopy(items, 0, items, 0, items.length - 1 - nullQuantity);
-        return Arrays.copyOf(itemNotNull, position);
+//        position = 0;
+//        Item[] itemNotNull = new Item[items.length];
+//        for (int i = 0; i < items.length; i++) {
+//            if (items[i] != null) {
+//                itemNotNull[position] = items[i];
+//                position++;
+//            }
+//        }
+////        System.arraycopy(items, 0, items, 0, items.length - 1 - nullQuantity);
+//        return Arrays.copyOf(itemNotNull, position);
 
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
@@ -94,21 +102,29 @@ public class Tracker {
      * @return item[]
      */
     public Item[] findByName(String key) {
-        position = 0;
-        boolean found = false;
-        Item addArray[] = new Item[items.length];
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equalsIgnoreCase(key)) {
-                addArray[position] = items[i];
-                position++;
-                found = true;
+        int index = 0;
+        Item[] addArray = new Item[this.position];
+        for (int i = 0; i < this.position; i++) {
+            if (items[i].getName().equals(key)) {
+                addArray[index++] = items[i];
             }
         }
-        if (found) {
-            return addArray;
-        } else {
-            return null;
-        }
+        return Arrays.copyOf(addArray, index);
+//        position = 0;
+//        boolean found = false;
+//        Item addArray[] = new Item[items.length];
+//        for (int i = 0; i < items.length; i++) {
+//            if (items[i] != null && items[i].getName().equalsIgnoreCase(key)) {
+//                addArray[position] = items[i];
+//                position++;
+//                found = true;
+//            }
+//        }
+//        if (found) {
+//            return addArray;
+//        } else {
+//            return null;
+//        }
     }
 
     /**
@@ -117,8 +133,8 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equalsIgnoreCase(id)) {
+        for (int i = 0; i < this.position; i++) {
+            if (items[i] != null && items[i].getId().equals(id)) {
                 result = items[i];
                 break;
             }
