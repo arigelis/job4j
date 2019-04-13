@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 
+import java.util.Arrays;
+
 /**
  * @version $Id$
  * @since 0.1
@@ -9,7 +11,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
+    public final Item[] items = new Item[10];
 
     /**
      * Указатель ячейки для новой заявки.
@@ -44,6 +46,10 @@ public class Tracker {
         return result;
     }
 
+    public Item[] getAll() {
+        return items;
+    }
+
     /**
      * @param id id
      * @return bool
@@ -70,15 +76,16 @@ public class Tracker {
      * @return item[]
      */
     public Item[] findAll() {
-        position = items.length - 1;
+        position = 0;
+        Item[] itemNotNull = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                items[i] = items[i + 1];
-                position--;
+            if (items[i] != null) {
+                itemNotNull[position] = items[i];
+                position++;
             }
         }
 //        System.arraycopy(items, 0, items, 0, items.length - 1 - nullQuantity);
-        return this.items;
+        return Arrays.copyOf(itemNotNull, position);
 
     }
 
@@ -88,16 +95,20 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         position = 0;
+        boolean found = false;
         Item addArray[] = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getName().equalsIgnoreCase(key)) {
+            if (items[i] != null && items[i].getName().equalsIgnoreCase(key)) {
                 addArray[position] = items[i];
                 position++;
+                found = true;
             }
         }
-        return addArray;//Arrays.copyOf(addArray, this.position);
-//        System.arraycopy(addArray, 0, addArray, 0, confirmed);
-//        return addArray;
+        if (found) {
+            return addArray;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -107,7 +118,7 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equalsIgnoreCase(id)) {
+            if (items[i] != null && items[i].getId().equalsIgnoreCase(id)) {
                 result = items[i];
                 break;
             }
