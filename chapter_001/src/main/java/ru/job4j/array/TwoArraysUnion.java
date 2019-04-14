@@ -5,12 +5,10 @@ public class TwoArraysUnion {
     public int[] unite(int[] array1, int[] array2) {
 
         int[] arrayTotal = new int[array1.length + array2.length];
-
-        for (int i = 0; i < arrayTotal.length; i++) {
-            arrayTotal[i] = array1[i / 2];
-            arrayTotal[i + 1] = array2[i / 2];
-            i++;
-        }
+        System.arraycopy(array1, 0, arrayTotal, 0, array1.length);
+        System.arraycopy(array2, 0, arrayTotal, array1.length, array2.length);
+        BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.sort(arrayTotal);
         return arrayTotal;
     }
 }
