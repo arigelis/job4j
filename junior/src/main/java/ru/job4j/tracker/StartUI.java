@@ -65,70 +65,21 @@ public class StartUI {
      */
     public void init() {
         boolean exit = false;
-        boolean tmpResult = false;
         while (!exit) {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 this.createItem();
             } else if (SHOW.equals(answer)) {
-                Item[] items = this.tracker.getAll();
-                System.out.println("All items: ");
-                items = this.tracker.findAll();
-                for (int i = 0; i < items.length; i++) {
-                    System.out.println((i + 1) + ") " + items[i].getId() + " " + items[i].getName() + " " + items[i].getDecs());
-                }
+                this.showItem();
             } else if (EDIT.equals(answer)) {
-                Item[] items = this.tracker.getAll();
-                System.out.println("All items: ");
-                items = this.tracker.findAll();
-                for (int i = 0; i < items.length; i++) {
-                    System.out.println((i + 1) + ") " + items[i]);
-                }
-                answer = this.input.ask("Введите пункт меню : ");
-                int index = Integer.parseInt(answer) - 1;
-                if (items[index] != null) {
-                    this.createItem();
-                    items[index] = items[items.length - 1];
-                    this.tracker.delete(items[items.length - 1].getId());
-//                    items = Arrays.copyOf(items, items.length - 2);
-                }
+                this.editItem(answer);
             } else if (DELETE.equals(answer)) {
-//                Item[] items = this.tracker.getAll();
-                System.out.println("All items: ");
-                Item[] items = this.tracker.findAll();
-                for (int i = 0; i < items.length; i++) {
-                    System.out.println((i + 1) + ") " + items[i].getId() + " " + items[i].getName() + " " + items[i].getDecs());
-                }
-                answer = this.input.ask("Введите пункт меню : ");
-                int index = Integer.parseInt(answer) - 1;
-                if (items[index] != null) {
-                    tmpResult = this.tracker.delete(items[index].getId());
-                    if (tmpResult) {
-                        System.out.println("Deleted.");
-                    } else {
-                        System.out.println("Not deleted.");
-                    }
-                }
+                this.deleteItem(answer);
             } else if (FIND_BY_ID.equals(answer)) {
-                answer = this.input.ask("Введите ID: ");
-                Item item = this.tracker.findById(answer);
-                if (item != null) {
-                    System.out.println("Item: " + item.getName() + " " + item.getDecs());
-                } else {
-                    System.out.println("Not found.");
-                }
+                this.findById(answer);
             } else if (FIND_BY_NAME.equals(answer)) {
-                answer = this.input.ask("Введите NAME: ");
-                Item[] item = this.tracker.findByName(answer);
-                if (item != null) {
-                    for (int i = 0; i < item.length; i++) {
-                        if (item[i] != null)
-                            System.out.println("Item: " + item[i].getName() + " " + item[i].getDecs());
-                    }
-                } else {
-                    System.out.println("Not found.");
-                }
+                this.findByName(answer);
             } else if (EXIT.equals(answer)) {
                 System.out.println("Exit!!!");
                 exit = true;
@@ -146,6 +97,74 @@ public class StartUI {
         Item item = new Item(name, desc, 0);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+
+    private void showItem() {
+        Item[] items = this.tracker.getAll();
+        System.out.println("All items: ");
+        items = this.tracker.findAll();
+        for (int i = 0; i < items.length; i++) {
+            System.out.println(String.format("%X) %s %s %s", (i + 1), items[i].getId(), items[i].getName(), items[i].getDecs()));
+        }
+    }
+
+    private void editItem(String answer) {
+        Item[] items = this.tracker.getAll();
+        System.out.println("All items: ");
+        items = this.tracker.findAll();
+        for (int i = 0; i < items.length; i++) {
+            System.out.println((i + 1) + ") " + items[i]);
+        }
+        answer = this.input.ask("Введите пункт меню : ");
+        int index = Integer.parseInt(answer) - 1;
+        if (items[index] != null) {
+            this.createItem();
+            items[index] = items[items.length - 1];
+            this.tracker.delete(items[items.length - 1].getId());
+//                    items = Arrays.copyOf(items, items.length - 2);
+        }
+    }
+
+    private void findByName(String answer) {
+        answer = this.input.ask("Введите NAME: ");
+        Item[] item = this.tracker.findByName(answer);
+        if (item != null) {
+            for (int i = 0; i < item.length; i++) {
+                if (item[i] != null)
+                    System.out.println(String.format("Item: %s %s", item[i].getName(), item[i].getDecs()));
+            }
+        } else {
+            System.out.println("Not found.");
+        }
+    }
+
+    private void findById(String answer) {
+        answer = this.input.ask("Введите ID: ");
+        Item item = this.tracker.findById(answer);
+        if (item != null) {
+            System.out.println(String.format("Item: %s %s", item.getName(), item.getDecs()));
+        } else {
+            System.out.println("Not found.");
+        }
+    }
+
+    private void deleteItem(String answer) {
+        boolean tmpResult = false;
+        System.out.println("All items: ");
+        Item[] items = this.tracker.findAll();
+        for (int i = 0; i < items.length; i++) {
+            System.out.println(String.format("%X) %s %s %s", (i + 1), items[i].getId(), items[i].getName(), items[i].getDecs()));
+        }
+        answer = this.input.ask("Введите пункт меню : ");
+        int index = Integer.parseInt(answer) - 1;
+        if (items[index] != null) {
+            tmpResult = this.tracker.delete(items[index].getId());
+            if (tmpResult) {
+                System.out.println("Deleted.");
+            } else {
+                System.out.println("Not deleted.");
+            }
+        }
     }
 
     private void showMenu() {
