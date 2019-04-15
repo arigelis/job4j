@@ -48,7 +48,6 @@
     </build>
     <modules>
        <module>chapter_001</module>
-	   <module>java-a-to-z</module>
 	   <module>puzzle</module>
         <module>junior</module>
     </modules>

@@ -37,7 +37,7 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean result = false;
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equalsIgnoreCase(id)) {
+            if (items[i] != null && items[i].getId().equalsIgnoreCase(id)) {
                 items[i] = item;
                 items[i].setId(id);
                 result = true;
