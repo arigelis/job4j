@@ -102,7 +102,6 @@ public class StartUI {
     private void showItem() {
         Item[] items = this.tracker.getAll();
         System.out.println("All items: ");
-        items = this.tracker.findAll();
         for (int i = 0; i < items.length; i++) {
             System.out.println(String.format("%X) %s %s %s", (i + 1), items[i].getId(), items[i].getName(), items[i].getDecs()));
         }
@@ -114,7 +113,11 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc, 0);
         String id = this.input.ask("Введите ID заменяемой заявки :");
-        this.tracker.replace(id, item);
+        if (this.tracker.replace(id, item)) {
+            System.out.println("Item was update");
+        } else {
+            System.out.println("Item not found");
+        }
     }
 
     private void findByName(String answer) {
