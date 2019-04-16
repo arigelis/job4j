@@ -1,7 +1,20 @@
 package ru.job4j.tracker;
 
 public class StubInput implements Input {
+    /**
+     * Это поле содержит последовательность ответов пользователя.
+     * Например. Если пользователь
+     * хочет выбрать добавление новой заявки ему нужно ввести:
+     * 0 - выбор пункта меню "добавить новую заявку".
+     * name - имя заявки
+     * desc - описание заявки
+     * 6 - выйти из трекера.
+     */
     private String[] answers;
+    /**
+     * П5голе считает количество вызовом метода ask.
+     * При каждом вызове надо передвинуть указатель на новое число.
+     */
     private int position = 0;
 
     public StubInput(String[] answers) {
@@ -10,6 +23,6 @@ public class StubInput implements Input {
 
     @Override
     public String ask(String question) {
-        return answers[position++];
+        return this.answers[this.position++];
     }
 }

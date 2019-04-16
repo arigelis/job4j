@@ -103,7 +103,9 @@ public class StartUI {
         Item[] items = this.tracker.getAll();
         System.out.println("All items: ");
         for (int i = 0; i < items.length; i++) {
-            System.out.println(String.format("%X) %s %s %s", (i + 1), items[i].getId(), items[i].getName(), items[i].getDecs()));
+            if (items[i] != null) {
+                System.out.println(String.format("%X) %s %s %s", (i + 1), items[i].getId(), items[i].getName(), items[i].getDecs()));
+            }
         }
     }
 
