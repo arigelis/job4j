@@ -122,8 +122,9 @@ public class StartUI {
         Item[] item = this.tracker.findByName(answer);
         if (item.length > 0) {
             for (int i = 0; i < item.length; i++) {
-                if (item[i] != null)
+                if (item[i] != null) {
                     System.out.println(String.format("Item: %s %s", item[i].getName(), item[i].getDecs()));
+                }
             }
         } else {
             System.out.println("Not found.");

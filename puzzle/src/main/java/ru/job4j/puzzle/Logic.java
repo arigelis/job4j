@@ -69,7 +69,8 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        int vertical = 0, horizontal = 0;//, verticalIndex = 0;
+        int vertical = 0;
+        int horizontal = 0;
 //        boolean win = false;
 //        for (int i = 0; i < table.length; i++) {
 //            if (win) {
@@ -110,7 +111,8 @@ public class Logic {
                 result = true;
                 break;
             } else {
-                horizontal = vertical = 0;
+                horizontal = 0;
+                vertical = 0;
             }
         }
 
