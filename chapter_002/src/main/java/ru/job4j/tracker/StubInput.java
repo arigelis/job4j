@@ -12,7 +12,7 @@ public class StubInput implements Input {
      */
     private String[] answers;
     /**
-     * П5голе считает количество вызовом метода ask.
+     * Поле считает количество вызовом метода ask.
      * При каждом вызове надо передвинуть указатель на новое число.
      */
     private int position = 0;

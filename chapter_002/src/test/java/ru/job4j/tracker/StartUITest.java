@@ -15,6 +15,24 @@ public class StartUITest {
     }
 
     @Test
+    public void whenUserAddItemThenDeleteById() {
+        Tracker tracker = new Tracker();     // создаём Tracker
+        Item item = tracker.add(new Item("test name", "desc", 0));
+        Input input = new StubInput(new String[]{"3", item.getId(), "6"});   //создаём StubInput с последовательностью действий
+        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        assertThat(tracker.findAll().length, is(0)); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+    }
+
+    @Test
+    public void whenUserAddItemThenFindByName() {
+        Tracker tracker = new Tracker();     // создаём Tracker
+        Item item = tracker.add(new Item("test", "desc", 0));
+        Input input = new StubInput(new String[]{"5", item.getName(), "6"});   //создаём StubInput с последовательностью действий
+        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        assertThat(tracker.findAll()[0].getName(), is("test")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+    }
+
+    @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         // создаём Tracker
         Tracker tracker = new Tracker();
