@@ -15,6 +15,8 @@ public class StartUITest {
     private final PrintStream stdout = System.out;
     // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    //const of menu items
+    private final String menuItems = "Меню:\r\n0:Add\r\n1:Show\r\n2:Edit\r\n3:Delete\r\n4:Find by Id\r\n5:Find by name\r\n6:Exit\r\n";
 
     @Before
     public void loadOutput() {
@@ -45,9 +47,12 @@ public class StartUITest {
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(this.out.toString(), is(
                 new StringBuilder()
-                        .append("Меню:\r\n0:Add\r\n1:Show\r\n2:Edit\r\n3:Delete\r\n4:Find by Id\r\n5:Find by name\r\n6:Exit\r\nAll items:" +
-                                " \r\n1) " + item.getId() + " " + item.getName() + " " + item.getDecs() + "\r\nМеню:\r\n0:Add\r\n1:Show\r\n2:Edit\r\n3:Delete\r\n4:Find by Id" +
-                                "\r\n5:Find by name\r\n6:Exit\r\nExit!!!")
+                        .append(menuItems + "All items:" + " \r\n1) "
+                                + item.getId() + " "
+                                + item.getName() + " "
+                                + item.getDecs()
+                                + "\r\n" + menuItems +
+                                "Exit!!!")
                         .append(System.lineSeparator())
                         .toString()
         )); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
@@ -60,7 +65,12 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc", 0));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll().length, is(0)); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(this.out.toString(), is(
+                new StringBuilder()
+                        .append(menuItems + "Deleted.\r\n" + menuItems + "Exit!!!")
+                        .append(System.lineSeparator())
+                        .toString()
+        )); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -69,7 +79,10 @@ public class StartUITest {
         Item item = tracker.add(new Item("test", "desc", 0));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(this.out.toString(), is(new StringBuilder()
+                .append(menuItems + "Item: " + item.getName() + " " + item.getDecs() + "\r\n" + menuItems + "Exit!!!")
+                .append(System.lineSeparator())
+                .toString())); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
