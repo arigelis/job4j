@@ -14,7 +14,8 @@ public class ConsoleInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> range) {
-        return 0;
+        System.out.print(question);
+        return Integer.valueOf(scanner.nextLine());
     }
 
 

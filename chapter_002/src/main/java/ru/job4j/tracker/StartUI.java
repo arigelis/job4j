@@ -78,11 +78,10 @@ public class StartUI {
         }
         do {
             menu.show();
-            int currentSelect = input.ask("select:", range);
+            int currentSelect = ((ValidateInput) input).ask("select:", range);
             if (String.valueOf(currentSelect).equalsIgnoreCase(this.EXIT)) {
                 working = false;
-                continue;
-            } else if (currentSelect < 0 || currentSelect > menu.getActionsLentgh()) {
+                System.out.println("Exit!!!");
                 continue;
             }
             menu.select(currentSelect);
@@ -176,6 +175,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
