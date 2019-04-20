@@ -18,10 +18,11 @@ public class ExitProgram implements UserAction {
 //        } else {
 //            System.out.println("Item not found");
 //        }
+        System.out.println("Exit!");
     }
 
     @Override
     public String info() {
-        return "Edit Item.";
+        return "Exit.";
     }
 }

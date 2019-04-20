@@ -44,6 +44,9 @@ public class StartUI {
      */
     private final Input input;
 
+
+    public static boolean working = true;
+
     /**
      * Хранилище заявок.
      */
@@ -65,11 +68,22 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        String currentSelect = "";
         menu.fillActions();
         do {
+
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
-        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+            currentSelect = input.ask("select:");
+            if (Integer.valueOf(currentSelect) >= menu.getActionsLentgh()) {
+                System.out.println("Incorrect select.");
+                continue;
+            }
+            if (currentSelect.equalsIgnoreCase(this.EXIT)) {
+                working = false;
+            }
+            menu.select(Integer.valueOf(currentSelect));
+//        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+        } while (this.working);
     }
 
     /**
