@@ -32,7 +32,7 @@ public class StubInput implements Input {
     public int ask(String question, List range) {
         int tmp = -1;
         try {
-            tmp = Integer.valueOf(this.answers[this.position++]);
+            tmp = Integer.valueOf(this.answers[this.position]);
         } catch (MenuOutException moe) {
             System.out.println("Please select key from menu.");
         } catch (NumberFormatException nfe) {

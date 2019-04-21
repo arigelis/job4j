@@ -74,9 +74,9 @@ public class StartUI {
         }
         do {
             menu.show();
-            int currentSelect = ((ValidateInput) input).ask("select:", range);
+            int currentSelect = this.input.ask("select:", range);
             menu.select(currentSelect);
-        } while (true);
+        } while (this.input != null);
     }
 
     /**

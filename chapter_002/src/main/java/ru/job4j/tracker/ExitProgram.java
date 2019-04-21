@@ -8,8 +8,9 @@ public class ExitProgram implements UserAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        System.out.println("Exit!");
-        System.exit(0);
+        System.out.println("Exit!!!");
+//        System.exit(0);
+        input = null;
     }
 
     @Override
