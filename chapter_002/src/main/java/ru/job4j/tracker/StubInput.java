@@ -30,6 +30,7 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, List range) {
+//        if()
         return 0;
     }
 }
