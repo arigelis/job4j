@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
-public class FindByName implements UserAction {
-    @Override
-    public int key() {
-        return 5;
+public class FindByName extends BaseAction {
+    protected FindByName(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -19,10 +18,5 @@ public class FindByName implements UserAction {
         } else {
             System.out.println("Not found.");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Find by name";
     }
 }

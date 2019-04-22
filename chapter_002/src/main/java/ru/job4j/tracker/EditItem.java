@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
-public class EditItem implements UserAction {
-    @Override
-    public int key() {
-        return 2;
+public class EditItem extends BaseAction {
+    protected EditItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -18,10 +17,5 @@ public class EditItem implements UserAction {
         } else {
             System.out.println("Item not found");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Edit";
     }
 }

@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
-public class FindById implements UserAction {
-    @Override
-    public int key() {
-        return 4;
+public class FindById extends BaseAction{
+    protected FindById(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -15,10 +14,5 @@ public class FindById implements UserAction {
         } else {
             System.out.println("Not found.");
         }
-    }
-
-    @Override
-    public String info() {
-        return "Find by Id";
     }
 }
