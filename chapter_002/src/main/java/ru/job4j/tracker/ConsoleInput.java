@@ -14,8 +14,18 @@ public class ConsoleInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> range) {
-        System.out.print(question);
-        return Integer.valueOf(scanner.nextLine());
+        int key = Integer.valueOf(this.ask(question));
+        boolean found = false;
+        for (Integer integer : range) {
+            if (integer == key) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            throw new MenuOutException("Key not found.");
+        }
+        return key;
     }
 
 

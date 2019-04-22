@@ -19,6 +19,6 @@ public class ShowItems implements UserAction {
 
     @Override
     public String info() {
-        return "Show items";
+        return "Show";
     }
 }

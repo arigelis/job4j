@@ -29,15 +29,18 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, List range) {
-        int tmp = -1;
-        try {
-            tmp = Integer.valueOf(this.answers[this.position]);
-        } catch (MenuOutException moe) {
-            System.out.println("Please select key from menu.");
-        } catch (NumberFormatException nfe) {
-            System.out.println("Please enter validate data again.");
+    public int ask(String question, List<Integer> range) {
+        int key = Integer.valueOf(this.ask(question));
+        boolean found = false;
+        for (Integer integer : range) {
+            if (integer == key) {
+                found = true;
+                break;
+            }
         }
-        return tmp; //input.ask("select:", range)
+        if (!found) {
+            throw new MenuOutException("Key not found.");
+        }
+        return key;
     }
 }

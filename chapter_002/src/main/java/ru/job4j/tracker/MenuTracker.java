@@ -64,10 +64,10 @@ public class MenuTracker {
      */
     public void show() {
         int counter = 0;
-        System.out.println("Menu: ");
+        System.out.println("Menu:");
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(String.format("%x) %s", counter, action.info()));
+                System.out.println(String.format("%x:%s", counter, action.info()));
                 counter++;
             }
         }

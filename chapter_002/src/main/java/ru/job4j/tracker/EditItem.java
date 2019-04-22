@@ -22,6 +22,6 @@ public class EditItem implements UserAction {
 
     @Override
     public String info() {
-        return "Edit Item.";
+        return "Edit";
     }
 }

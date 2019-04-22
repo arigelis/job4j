@@ -23,6 +23,6 @@ public class FindByName implements UserAction {
 
     @Override
     public String info() {
-        return "Find item by name.";
+        return "Find by name";
     }
 }

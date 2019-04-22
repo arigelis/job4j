@@ -19,6 +19,6 @@ public class FindById implements UserAction {
 
     @Override
     public String info() {
-        return "Find item by id.";
+        return "Find by Id";
     }
 }

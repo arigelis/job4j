@@ -16,7 +16,7 @@ public class StartUITest {
     // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     //const of menu items
-    private final String menuItems = "Меню:\r\n0:Add\r\n1:Show\r\n2:Edit\r\n3:Delete\r\n4:Find by Id\r\n5:Find by name\r\n6:Exit\r\n";
+    private final String menuItems = "Menu:\r\n0:Add\r\n1:Show\r\n2:Edit\r\n3:Delete\r\n4:Find by Id\r\n5:Find by name\r\n6:Exit\r\n";
 
     @Before
     public void loadOutput() {

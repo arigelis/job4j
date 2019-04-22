@@ -72,11 +72,12 @@ public class StartUI {
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
         }
+        int key;
         do {
             menu.show();
-            int currentSelect = this.input.ask("select:", range);
-            menu.select(currentSelect);
-        } while (this.input != null);
+            key = input.ask("select:", range);
+            menu.select(key);
+        } while (key != Integer.valueOf(EXIT));
     }
 
     /**
