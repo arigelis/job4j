@@ -15,7 +15,7 @@ public class MenuTracker {
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
-    private List<UserAction> actions = new ArrayList<>();
+    private List<BaseAction> actions = new ArrayList<>();
 
     /**
      * Конструктор.
@@ -65,7 +65,7 @@ public class MenuTracker {
     public void show() {
         int counter = 0;
         System.out.println("Menu:");
-        for (UserAction action : this.actions) {
+        for (BaseAction action : this.actions) {
             if (action != null) {
                 System.out.println(String.format("%x:%s", counter, action.info()));
                 counter++;
