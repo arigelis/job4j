@@ -5,7 +5,7 @@ import ru.job4j.tracker.tracker.storage.Tracker;
 import ru.job4j.tracker.tracker.input.Input;
 
 public class FindByName extends BaseAction {
-    protected FindByName(int key, String name) {
+    public FindByName(int key, String name) {
         super(key, name);
     }
 

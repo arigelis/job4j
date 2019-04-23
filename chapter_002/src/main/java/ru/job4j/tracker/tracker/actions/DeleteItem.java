@@ -4,7 +4,7 @@ import ru.job4j.tracker.tracker.storage.Tracker;
 import ru.job4j.tracker.tracker.input.Input;
 
 public class DeleteItem extends BaseAction {
-    protected DeleteItem(int key, String name) {
+    public DeleteItem(int key, String name) {
         super(key, name);
     }
 

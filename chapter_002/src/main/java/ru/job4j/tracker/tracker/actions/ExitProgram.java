@@ -4,7 +4,7 @@ import ru.job4j.tracker.tracker.storage.Tracker;
 import ru.job4j.tracker.tracker.input.Input;
 
 public class ExitProgram extends BaseAction {
-    protected ExitProgram(int key, String name) {
+    public ExitProgram(int key, String name) {
         super(key, name);
     }
 

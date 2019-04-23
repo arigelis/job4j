@@ -5,7 +5,7 @@ import ru.job4j.tracker.tracker.storage.Tracker;
 import ru.job4j.tracker.tracker.input.Input;
 
 public class EditItem extends BaseAction {
-    protected EditItem(int key, String name) {
+    public EditItem(int key, String name) {
         super(key, name);
     }
 
