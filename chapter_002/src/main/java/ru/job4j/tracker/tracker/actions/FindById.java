@@ -1,6 +1,10 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.tracker.actions;
 
-public class FindById extends BaseAction{
+import ru.job4j.tracker.tracker.storage.Item;
+import ru.job4j.tracker.tracker.storage.Tracker;
+import ru.job4j.tracker.tracker.input.Input;
+
+public class FindById extends BaseAction {
     protected FindById(int key, String name) {
         super(key, name);
     }

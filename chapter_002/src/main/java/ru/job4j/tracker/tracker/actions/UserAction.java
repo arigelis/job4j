@@ -1,4 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.tracker.actions;
+
+import ru.job4j.tracker.tracker.storage.Tracker;
+import ru.job4j.tracker.tracker.input.Input;
 
 public interface UserAction {
     /**

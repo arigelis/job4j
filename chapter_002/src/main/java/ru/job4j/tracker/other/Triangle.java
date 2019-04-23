@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.other;
 
 public class Triangle implements Shape {
     @Override
