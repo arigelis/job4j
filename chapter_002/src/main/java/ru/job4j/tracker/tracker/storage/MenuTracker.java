@@ -1,5 +1,6 @@
 package ru.job4j.tracker.tracker.storage;
 
+import ru.job4j.tracker.tracker.StartUI;
 import ru.job4j.tracker.tracker.actions.*;
 import ru.job4j.tracker.tracker.input.Input;
 
@@ -19,6 +20,7 @@ public class MenuTracker {
      * @param хранит ссылку на массив типа UserAction.
      */
     private List<BaseAction> actions = new ArrayList<>();
+
 
     /**
      * Конструктор.
@@ -43,14 +45,14 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Add"));
         this.actions.add(new ShowItems(1, "Show"));
         this.actions.add(new EditItem(2, "Edit"));
         this.actions.add(new DeleteItem(3, "Delete"));
         this.actions.add(new FindById(4, "Find by Id"));
         this.actions.add(new FindByName(5, "Find by name"));
-        this.actions.add(new ExitProgram(6, "Exit"));
+        this.actions.add(new ExitProgram(6, "Exit", ui));
     }
 
     /**
