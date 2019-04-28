@@ -20,7 +20,7 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws Exception {
         boolean rst = false;
         int index = this.findBy(source);
         int destIndex = this.findBy(dest);
@@ -29,30 +29,18 @@ public class Logic {
                 rst = checkWay(source, dest);
             }
             if (rst) {
-                try {
-                    throw new OccupiedWayException();
-                } catch (OccupiedWayException e) {
-                    e.printStackTrace();
-                }
                 rst = false;
+                throw new OccupiedWayException();
             } else {
                 Cell[] steps = new Cell[0];
-                try {
-                    steps = this.figures[index].way(source, dest);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                steps = this.figures[index].way(source, dest);
                 if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                     rst = true;
                     this.figures[index] = this.figures[index].copy(dest);
                 }
             }
         } else {
-            try {
-                throw new ImpossibleMoveException();
-            } catch (ImpossibleMoveException e) {
-                e.printStackTrace();
-            }
+            throw new ImpossibleMoveException();
         }
         return rst;
     }
