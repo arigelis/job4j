@@ -98,3 +98,16 @@ public class CashMachine {
 //        return answers;
 //    }
 //}
+
+
+
+class calculator{
+    int a,b;
+    int result;
+
+    //function
+    public void add(int a,int b){
+        result = a+b;
+    }
+}
+
