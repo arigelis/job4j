@@ -21,6 +21,9 @@ public class PriorityQueue {
                 if (taskTmp.getPriority() > task.getPriority()) {
                     tasks.add(counter, task);
                     break;
+                } else if (taskTmp.getPriority() <= task.getPriority() && counter + 1 == tasks.size()) {
+                    tasks.add(tasks.size(), task);
+                    break;
                 }
                 counter++;
             }
