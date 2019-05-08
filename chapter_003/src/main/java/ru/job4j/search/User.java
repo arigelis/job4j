@@ -10,15 +10,6 @@ public class User {
     public User() {
     }
 
-    public HashMap<Integer, User> process(List<User> list) {
-        HashMap<Integer, User> usersMap = new HashMap<>();
-        for (User tmpUser : list) {
-            usersMap.put(tmpUser.getId(), tmpUser);
-        }
-        return usersMap;
-    }
-
-
     public User(Integer id, String name, String city) {
         this.id = id;
         this.name = name;

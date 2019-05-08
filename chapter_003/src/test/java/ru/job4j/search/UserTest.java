@@ -13,10 +13,10 @@ public class UserTest {
 
     @Test
     public void process() {
-        User user = new User();
+        UserConvert userConvert = new UserConvert();
         User user1 = new User(1, "John", "Nebraska");
         User user2 = new User(2, "Christine", "Denver");
-        HashMap<Integer, User> usersMap = user.process(new ArrayList<>(Arrays.asList(user1, user2)));
+        HashMap<Integer, User> usersMap = userConvert.process(new ArrayList<>(Arrays.asList(user1, user2)));
         HashMap<Integer, User> expect = new HashMap<>();
         expect.put(1, user1);
         expect.put(2, user2);
