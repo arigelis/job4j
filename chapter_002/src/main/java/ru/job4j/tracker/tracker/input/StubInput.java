@@ -2,6 +2,7 @@ package ru.job4j.tracker.tracker.input;
 
 import ru.job4j.tracker.tracker.storage.MenuOutException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StubInput implements Input {
@@ -14,20 +15,20 @@ public class StubInput implements Input {
      * desc - описание заявки
      * 6 - выйти из трекера.
      */
-    private String[] answers;
+    private ArrayList<String> answers = new ArrayList<>();
     /**
      * Поле считает количество вызовом метода ask.
      * При каждом вызове надо передвинуть указатель на новое число.
      */
     private int position = 0;
 
-    public StubInput(String[] answers) {
-        this.answers = answers;
+    public StubInput(ArrayList<String> answers) {
+        this.answers.addAll(answers);
     }
 
     @Override
     public String ask(String question) {
-        return this.answers[this.position++];
+        return this.answers.get(this.position++);
     }
 
     @Override
