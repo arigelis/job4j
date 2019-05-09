@@ -2,7 +2,7 @@ package ru.job4j.search;
 
 import java.util.Comparator;
 
-public class UserS implements Comparable {
+public class UserS implements Comparable<UserS> {
     String name;
     int age;
 
@@ -26,9 +26,9 @@ public class UserS implements Comparable {
     public void setAge(int age) {
         this.age = age;
     }
-
+    
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(UserS o) {
         return this.age > ((UserS) o).age ? 0 : -1;
     }
 
