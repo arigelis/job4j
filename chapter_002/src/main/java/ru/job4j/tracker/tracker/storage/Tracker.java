@@ -3,6 +3,7 @@ package ru.job4j.tracker.tracker.storage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @version $Id$
@@ -12,7 +13,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    public final ArrayList<Item> items = new ArrayList<>(10);
+    public final List<Item> items = new ArrayList<>(10);
 
     /**
      * Указатель ячейки для новой заявки.
@@ -39,7 +40,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) != null && items.get(i).getId().equalsIgnoreCase(id)) {
-                items.add(i, item);
+                items.set(i, item);
                 items.get(i).setId(id);
                 result = true;
                 break;
@@ -48,7 +49,7 @@ public class Tracker {
         return result;
     }
 
-    public ArrayList<Item> getAll() {
+    public List<Item> getAll() {
         return items;
     }
 
@@ -60,8 +61,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (items.get(i).getId().equals(id)) {
-                System.arraycopy(items.toArray(), i + 1, items.toArray(), i, position - i - 1);
-                items.add(position--, null);
+                items.remove(i);
                 result = true;
                 break;
             }
@@ -80,7 +80,7 @@ public class Tracker {
      * @param key str
      * @return item[]
      */
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         int index = 0;
         Item[] addArray = new Item[this.position];
         for (int i = 0; i < this.position; i++) {
@@ -88,7 +88,7 @@ public class Tracker {
                 addArray[index++] = items.get(i);
             }
         }
-        return Arrays.copyOf(addArray, index);
+        return Arrays.asList(Arrays.copyOf(addArray, index));
     }
 
     /**
