@@ -26,10 +26,10 @@ public class UserS implements Comparable<UserS> {
     public void setAge(int age) {
         this.age = age;
     }
-    
+
     @Override
     public int compareTo(UserS o) {
-        return this.age > ((UserS) o).age ? 0 : -1;
+        return Integer.compare(this.getAge(), o.getAge());
     }
 
 
