@@ -23,10 +23,8 @@ public class SortUserS {
             @Override
             public int compare(UserS o1, UserS o2) {
                 int result = 0;
-                if ((o1.getName().compareTo(o2.getName()) == 0)) {
+                if (((result = o1.getName().compareTo(o2.getName())) == 0)) {
                     result = Integer.compare(o1.getAge(), o2.getAge());
-                } else {
-                    result = (o1.getName().compareTo(o2.getName()));
                 }
                 return result;
             }
