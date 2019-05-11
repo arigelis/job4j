@@ -62,7 +62,7 @@ public class PaintTest {
                         new StringBuilder()
                                 .append("  *  ")
                                 .append(" * * ")
-                                .append("*****\r\r\n")
+                                .append("*****\r" + System.lineSeparator())
                                 .toString()
                 )
         );

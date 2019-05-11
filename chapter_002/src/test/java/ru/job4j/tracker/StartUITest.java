@@ -54,11 +54,11 @@ public class StartUITest {
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(this.out.toString(), is(
                 new StringBuilder()
-                        .append(menuItems + "All items:" + " \r\n1) "
+                        .append(menuItems + "All items:" + " " + System.lineSeparator() + "1) "
                                 + item.getId() + " "
                                 + item.getName() + " "
                                 + item.getDecs()
-                                + "\r\n" + menuItems
+                                + System.lineSeparator() + menuItems
                                 + "Exit!!!")
                         .append(System.lineSeparator())
                         .toString()
@@ -74,7 +74,7 @@ public class StartUITest {
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(this.out.toString(), is(
                 new StringBuilder()
-                        .append(menuItems + "Deleted.\r\n" + menuItems + "Exit!!!")
+                        .append(menuItems + "Deleted." + System.lineSeparator() + menuItems + "Exit!!!")
                         .append(System.lineSeparator())
                         .toString()
         )); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
@@ -87,7 +87,7 @@ public class StartUITest {
         Input input = new StubInput(new ArrayList<String>(Arrays.asList("5", item.getName(), "6")));   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(this.out.toString(), is(new StringBuilder()
-                .append(menuItems + "Item: " + item.getName() + " " + item.getDecs() + "\r\n" + menuItems + "Exit!!!")
+                .append(menuItems + "Item: " + item.getName() + " " + item.getDecs() + System.lineSeparator() + menuItems + "Exit!!!")
                 .append(System.lineSeparator())
                 .toString())); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
