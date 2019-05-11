@@ -58,8 +58,8 @@ public class StartUITest {
                                 + item.getId() + " "
                                 + item.getName() + " "
                                 + item.getDecs()
-                                + "\r\n" + menuItems +
-                                "Exit!!!")
+                                + "\r\n" + menuItems
+                                + "Exit!!!")
                         .append(System.lineSeparator())
                         .toString()
         )); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.

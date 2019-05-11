@@ -17,6 +17,7 @@ public class UserSTest {
         Set<UserS> usersMap = userConvert.sort(new ArrayList<UserS>(Arrays.asList(user1, user2)));
         Set<UserS> expect = new HashSet<>();
         expect.add(user1);
+        expect.add(user2);
 
         assertThat(usersMap, is(expect));
     }

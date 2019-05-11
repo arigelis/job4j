@@ -1,6 +1,6 @@
 package ru.job4j.tracker.tracker.singletons;
 
-public class TrackerSingleStaticFinalFieldLazy implements SingletonImpl{
+public class TrackerSingleStaticFinalFieldLazy implements SingletonImpl {
     private TrackerSingleStaticFinalFieldLazy() {
     }
 

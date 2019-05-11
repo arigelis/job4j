@@ -6,8 +6,9 @@ import java.util.List;
 
 public class ConvertListToArray {
     public int[][] toArray(List<Integer> list, int rows) {
-        if (rows == 0)
+        if (rows == 0) {
             return null;
+        }
         int cells = list.size() % rows > 0 ? list.size() / rows + 1 : list.size() / rows;
         int counterR = 0;
         int counterC = 0;
