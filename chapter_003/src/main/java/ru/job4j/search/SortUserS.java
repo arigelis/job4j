@@ -24,8 +24,8 @@ public class SortUserS {
             public int compare(UserS o1, UserS o2) {
                 int result = 0;
                 result = (o1.getName().compareTo(o2.getName()) == 0)
-                        ? (o1.getAge() > o2.getAge() ? 1 : -1)
-                        : (o1.getName().compareTo(o2.getName()) > 0) ? 1 : -1;
+                        ? Integer.compare(o1.getAge(), o2.getAge())
+                        : (o1.getName().compareTo(o2.getName()));
                 return result;
             }
         });
