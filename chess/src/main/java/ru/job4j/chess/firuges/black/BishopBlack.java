@@ -23,7 +23,7 @@ public class BishopBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws Exception {
-        boolean isDiagonal = (Math.abs((source.x - dest.x)) == Math.abs((source.y - dest.y)));//((source.x - dest.x) == (source.y - dest.y));
+        boolean isDiagonal = (Math.abs((source.x - dest.x)) == Math.abs((source.y - dest.y)));
         if (!isDiagonal) {
             throw new ImpossibleMoveException();
         }

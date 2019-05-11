@@ -24,7 +24,7 @@ public class Logic {
         boolean rst = false;
         int index = this.findBy(source);
         int destIndex = this.findBy(dest);
-        if (index != -1 && destIndex == -1) {//проверка на занятость ячейки.
+        if (index != -1 && destIndex == -1) {
             if (!this.figures[index].getClass().equals(KnightBlack.class) || !this.figures[index].getClass().equals(KnightWhite.class)) {
                 rst = checkWay(source, dest);
             }
@@ -89,19 +89,19 @@ public class Logic {
         boolean rst = false;
         int index = this.findBy(source);
         int destIndex = this.findBy(dest);
-        if (source.x != dest.x && source.y != dest.y) {//если движение было по диагонали
-            if (Math.abs((source.x - dest.x)) == Math.abs((source.y - dest.y))) {//((source.x - dest.x) == (source.y - dest.y)) {//(Math.abs((source.x - dest.x)) == Math.abs((source.y - dest.y)))
+        if (source.x != dest.x && source.y != dest.y) {
+            if (Math.abs((source.x - dest.x)) == Math.abs((source.y - dest.y))) {
                 rst = intervalCheckXY(source.x, source.y, dest.x, dest.y);
             } else {
                 rst = true;
             }
-        } else if (source.x != dest.x && source.y == dest.y) {//если движение было по горизонтали
+        } else if (source.x != dest.x && source.y == dest.y) {
             if (source.x > dest.x) {
                 rst = intervalCheckX(dest.x, source.x, dest.y);
             } else {
                 rst = intervalCheckX(source.x, dest.x, dest.y);
             }
-        } else if (source.x == dest.x && source.y != dest.y) {//если движение было по вертикали
+        } else if (source.x == dest.x && source.y != dest.y) {
             if (source.y > dest.y) {
                 rst = intervalCheckY(dest.y, source.y, source.x);
             } else {

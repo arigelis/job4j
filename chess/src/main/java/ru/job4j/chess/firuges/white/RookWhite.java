@@ -27,7 +27,7 @@ public class RookWhite implements Figure {
         if (source.y != dest.y && source.x != dest.x) {
             steps = new Cell[]{source};
         } else {
-            while (source.y != dest.y) {// && source.x != dest.x
+            while (source.y != dest.y) {
                 if (source.y == dest.y + counter && source.x == dest.x) {
                     steps = new Cell[]{dest};
                     break;
@@ -38,7 +38,7 @@ public class RookWhite implements Figure {
                     counter++;
                 }
             }
-            while (source.x != dest.x) {// && source.x != dest.x
+            while (source.x != dest.x) {
                 if (source.x == dest.x + counter && source.y == dest.y) {
                     steps = new Cell[]{dest};
                     break;
