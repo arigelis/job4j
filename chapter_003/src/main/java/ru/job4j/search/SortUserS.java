@@ -22,16 +22,13 @@ public class SortUserS {
         users.sort(new Comparator<UserS>() {
             @Override
             public int compare(UserS o1, UserS o2) {
-                int result = 0;
-                if (((result = o1.getName().compareTo(o2.getName())) == 0)) {
+                int result = o1.getName().compareTo(o2.getName());
+                if (result == 0) {
                     result = Integer.compare(o1.getAge(), o2.getAge());
                 }
                 return result;
             }
         });
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).getName() + users.get(i).getAge());
-        }
         return users;
     }
 }
