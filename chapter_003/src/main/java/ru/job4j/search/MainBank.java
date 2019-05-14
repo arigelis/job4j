@@ -5,22 +5,29 @@ import java.util.List;
 import java.util.Map;
 
 public class MainBank {
-    private ArrayList<BankUser> bankUsers;
-    private UserAccountList userAccountList;
+    private Map<BankUser, List<BankAccount>> accountList;
+
 
     public static void main(String[] args) {
 
     }
 
     public void addUser(BankUser bankUser) {
-        bankUsers.add(bankUser);
+        accountList.put(bankUser, new ArrayList<>());
     }
 
     public void deleteUser(BankUser bankUser) {
-        if (bankUsers.remove(bankUser)) {
-            userAccountList.deleteAccountsOfUser(bankUser);
+
+        if (accountList.remove(bankUser, null)) {
+            deleteAccountsOfUser(bankUser);
             System.out.println("User deleted.");
         }
+    }
+
+    public boolean deleteAccountsOfUser(BankUser bankUser) {
+        boolean result = true;
+        result = accountList.remove(bankUser, accountList.get(bankUser));
+        return result;
     }
 
     public void addAccountToUser(String passport, BankAccount account) {
@@ -35,9 +42,9 @@ public class MainBank {
 
     public List<BankAccount> getUserAccounts(String passport) {
         List<BankAccount> tmpAccountList = null;
-        for (BankUser bankUser : bankUsers) {
-            if (userAccountList != null && bankUser.getPassport().equalsIgnoreCase(passport)) {
-                tmpAccountList = userAccountList.getAccountList().get(bankUser);
+        for (BankUser bankUser : accountList.keySet()) {
+            if (accountList != null && bankUser.getPassport().equalsIgnoreCase(passport)) {
+                tmpAccountList = accountList.get(bankUser);
             }
         }
         return tmpAccountList;
@@ -58,7 +65,6 @@ public class MainBank {
             }
         }
 
-
         srcAccountList = getUserAccounts(destPassport);
         for (int i = 0; i < srcAccountList.size(); i++) {
             BankAccount tmpAcc = srcAccountList.get(i);
@@ -67,8 +73,17 @@ public class MainBank {
                 to = true;
             }
         }
-
         return from & to;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
 }
