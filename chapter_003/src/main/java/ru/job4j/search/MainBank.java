@@ -1,11 +1,12 @@
 package ru.job4j.search;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MainBank {
-    private Map<BankUser, List<BankAccount>> accountList;
+    private Map<BankUser, List<BankAccount>> accountList = new HashMap<>();
 
 
     public static void main(String[] args) {
@@ -13,7 +14,9 @@ public class MainBank {
     }
 
     public void addUser(BankUser bankUser) {
-        accountList.put(bankUser, new ArrayList<>());
+        if (accountList.get(bankUser).isEmpty()) {
+            accountList.put(bankUser, new ArrayList<>());
+        }
     }
 
     public void deleteUser(BankUser bankUser) {
@@ -41,10 +44,22 @@ public class MainBank {
     }
 
     public List<BankAccount> getUserAccounts(String passport) {
-        List<BankAccount> tmpAccountList = null;
+        List<BankAccount> tmpAccountList = new ArrayList<>();
         for (BankUser bankUser : accountList.keySet()) {
             if (accountList != null && bankUser.getPassport().equalsIgnoreCase(passport)) {
                 tmpAccountList = accountList.get(bankUser);
+            }
+        }
+        return tmpAccountList;
+    }
+
+    public List<BankAccount> getUserAccountsByReq(String requisites) {
+        List<BankAccount> tmpAccountList = new ArrayList<>();
+        for (List<BankAccount> bankAccounts : accountList.values()) {
+            for (BankAccount bankAccount : bankAccounts) {
+                if (bankAccount != null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
+                    tmpAccountList.add(bankAccount);
+                }
             }
         }
         return tmpAccountList;
