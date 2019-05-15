@@ -57,7 +57,7 @@ public class MainBank {
         List<BankAccount> tmpAccountList = new ArrayList<>();
         for (List<BankAccount> bankAccounts : accountList.values()) {
             for (BankAccount bankAccount : bankAccounts) {
-                if (bankAccount != null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
+                if (bankAccount!=null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
                     tmpAccountList.add(bankAccount);
                 }
             }
