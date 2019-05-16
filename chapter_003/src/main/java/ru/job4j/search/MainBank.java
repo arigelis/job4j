@@ -81,9 +81,9 @@ public class MainBank {
         boolean result = false;
         BankAccount srcAcc = getTransferAcc(srcPassport, srcRequisite);
         if (srcAcc != null && srcAcc.getValue() >= amount) {
-            srcAcc.setValue(srcAcc.getValue() - amount);
             BankAccount destAcc = getTransferAcc(destPassport, dstRequisite);
             if (destAcc != null) {
+                srcAcc.setValue(srcAcc.getValue() - amount);
                 destAcc.setValue(amount);
                 result = true;
             }
