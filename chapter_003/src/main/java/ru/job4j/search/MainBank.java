@@ -57,7 +57,7 @@ public class MainBank {
         List<BankAccount> tmpAccountList = new ArrayList<>();
         for (List<BankAccount> bankAccounts : accountList.values()) {
             for (BankAccount bankAccount : bankAccounts) {
-                if (bankAccount!=null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
+                if (bankAccount != null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
                     tmpAccountList.add(bankAccount);
                 }
             }
@@ -65,30 +65,30 @@ public class MainBank {
         return tmpAccountList;
     }
 
-    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-        boolean from = false;
-        boolean to = false;
-        BankAccount srcAcc;
+    private BankAccount getTransferAcc(String srcPassport, String srcRequisite) {
         List<BankAccount> srcAccountList = getUserAccounts(srcPassport);
+        BankAccount result = null;
         for (int i = 0; i < srcAccountList.size(); i++) {
             BankAccount tmpAcc = srcAccountList.get(i);
-            if (tmpAcc.getRequisites().equalsIgnoreCase(srcRequisite)
-                    && tmpAcc.getValue() >= amount) {
-                tmpAcc.setValue(tmpAcc.getValue() - amount);
-                srcAcc = tmpAcc;
-                from = true;
+            if (tmpAcc.getRequisites().equalsIgnoreCase(srcRequisite)) {
+                result = tmpAcc;
             }
         }
+        return result;
+    }
 
-        srcAccountList = getUserAccounts(destPassport);
-        for (int i = 0; i < srcAccountList.size(); i++) {
-            BankAccount tmpAcc = srcAccountList.get(i);
-            if (tmpAcc.getRequisites().equalsIgnoreCase(dstRequisite)) {
-                tmpAcc.setValue(amount);
-                to = true;
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
+        boolean result = false;
+        BankAccount srcAcc = getTransferAcc(srcPassport, srcRequisite);
+        if (srcAcc != null && srcAcc.getValue() >= amount) {
+            srcAcc.setValue(srcAcc.getValue() - amount);
+            BankAccount destAcc = getTransferAcc(destPassport, dstRequisite);
+            if (destAcc != null) {
+                destAcc.setValue(amount);
+                result = true;
             }
         }
-        return from & to;
+        return result;
     }
 
     @Override

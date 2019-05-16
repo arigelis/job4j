@@ -1,9 +1,6 @@
 package ru.job4j.search;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Departments {
     public static final class Org implements Comparable<Org> {
@@ -41,12 +38,22 @@ public class Departments {
     }
 
     public List<Org> sortAsc(List<Org> orgs) {
-        Collections.sort(orgs);
+        Collections.sort(orgs, new Comparator<Org>() {
+            @Override
+            public int compare(Org o1, Org o2) {
+                return o1.equals(o2) ? -1 : 0;
+            }
+        });
         return orgs;
     }
 
     public List<Org> sortDesc(List<Org> orgs) {
-        Collections.sort(orgs, Collections.reverseOrder());
+        Collections.sort(orgs, new Comparator<Org>() {
+            @Override
+            public int compare(Org o1, Org o2) {
+                return o1.equals(o2) ? 0 : -1;
+            }
+        });
         return orgs;
     }
 }
