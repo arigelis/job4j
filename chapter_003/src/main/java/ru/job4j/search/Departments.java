@@ -12,11 +12,11 @@ public class Departments {
 
         @Override
         public int compareTo(Org o) {
-            return this.equals(o)?0:-1;
+            return this.equals(o) ? 0 : -1;
         }
 
         @Override
-        public int hashCode(){
+        public int hashCode() {
             return this.toString().hashCode();
         }
 
@@ -64,6 +64,7 @@ public class Departments {
                 return o1.equals(o2) ? 0 : -1;
             }
         });
+//        orgs.sort(Comparator.reverseOrder());
         return orgs;
     }
 }
