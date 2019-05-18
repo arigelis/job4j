@@ -1,9 +1,6 @@
 package ru.job4j.search;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MainBank {
     private Map<BankUser, List<BankAccount>> accountList = new HashMap<>();
@@ -84,7 +81,7 @@ public class MainBank {
             BankAccount destAcc = getTransferAcc(destPassport, dstRequisite);
             if (destAcc != null) {
                 srcAcc.setValue(srcAcc.getValue() - amount);
-                destAcc.setValue(amount);
+                destAcc.setValue(destAcc.getValue() + amount);
                 result = true;
             }
         }
