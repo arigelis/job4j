@@ -12,7 +12,17 @@ public class Departments {
 
         @Override
         public int compareTo(Org o) {
-            return 0;
+            return this.equals(o)?0:-1;
+        }
+
+        @Override
+        public int hashCode(){
+            return this.toString().hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return (this.hashCode() == obj.hashCode());
         }
 
         @Override
