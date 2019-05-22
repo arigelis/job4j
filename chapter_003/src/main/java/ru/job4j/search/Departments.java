@@ -12,7 +12,11 @@ public class Departments {
 
         @Override
         public int compareTo(Org o) {
-            return this.equals(o) ? 0 : -1;
+            int result = 0;
+            while (Integer.compare(o.toString().charAt(result), this.toString().charAt(result)) == 0) {
+                result++;
+            }
+            return Integer.compare(o.toString().charAt(result), this.toString().charAt(result));
         }
 
         @Override
@@ -58,13 +62,7 @@ public class Departments {
     }
 
     public List<Org> sortDesc(List<Org> orgs) {
-        Collections.sort(orgs, new Comparator<Org>() {
-            @Override
-            public int compare(Org o1, Org o2) {
-                return o1.equals(o2) ? 0 : -1;
-            }
-        });
-//        orgs.sort(Comparator.reverseOrder());
+        Collections.sort(orgs);
         return orgs;
     }
 }
