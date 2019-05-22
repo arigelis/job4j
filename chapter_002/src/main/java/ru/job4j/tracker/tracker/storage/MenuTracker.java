@@ -6,6 +6,7 @@ import ru.job4j.tracker.tracker.input.Input;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     /**
@@ -20,7 +21,7 @@ public class MenuTracker {
      * @param хранит ссылку на массив типа UserAction.
      */
     private List<BaseAction> actions = new ArrayList<>();
-
+    private final Consumer<String> output;
 
     /**
      * Конструктор.
@@ -28,9 +29,10 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
@@ -61,7 +63,7 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        this.actions.get(key).execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker,this.output);
     }
 
     /**
@@ -72,7 +74,7 @@ public class MenuTracker {
         System.out.println("Menu:");
         for (BaseAction action : this.actions) {
             if (action != null) {
-                System.out.println(String.format("%x:%s", counter, action.info()));
+                output.accept(String.format("%x:%s", counter, action.info()));
                 counter++;
             }
         }

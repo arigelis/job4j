@@ -5,6 +5,7 @@ import ru.job4j.tracker.tracker.storage.Item;
 import ru.job4j.tracker.tracker.storage.Tracker;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class FindByName extends BaseAction {
     public FindByName(int key, String name) {
@@ -12,7 +13,7 @@ public class FindByName extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, Tracker tracker, Consumer<String> output) {
         String answer = input.ask("Введите NAME: ");
         List<Item> item = tracker.findByName(answer);
         if (item.size() > 0) {
