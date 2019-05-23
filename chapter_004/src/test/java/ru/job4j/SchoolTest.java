@@ -2,10 +2,7 @@ package ru.job4j;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -73,10 +70,10 @@ public class SchoolTest {
                         , new Student(65)
                 ));
 
-        List<Student> result = new ArrayList<Student>(
-                Arrays.asList(new Student(40)
-                        , new Student(30)
-                ));
+        Map<String, Student>  result = new HashMap<>();
+        result.put("A",new Student(40));
+        result.put("T",new Student(30));
+
         Map<String, Student> map;
         map = school.collect1(studentList, p -> p.getScore() >= 0 && p.getScore() <= 50);
         assertThat(map.toString(), is(result));
