@@ -5,6 +5,12 @@ import java.util.Objects;
 public class Student {
     private int score;
 
+    private String surname;
+
+    public String getSurname() {
+        return surname;
+    }
+
     public int getScore() {
         return score;
     }
@@ -29,6 +35,10 @@ public class Student {
 
     public Student(int score) {
         this.score = score;
+    }
 
+    public Student(int score, String surname) {
+        this.score = score;
+        this.surname = surname;
     }
 }

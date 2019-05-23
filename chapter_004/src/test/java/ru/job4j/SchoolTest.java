@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Map;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 public class SchoolTest {
     @Test
@@ -32,7 +32,7 @@ public class SchoolTest {
                 ));
 
         studentList = school.collect(studentList, p -> p.getScore() >= 70);
-        assertThat(result, is(result));
+        assertThat(studentList, is(result));
     }
 
     @Test
@@ -51,21 +51,22 @@ public class SchoolTest {
 
         List<Student> result = new ArrayList<Student>(
                 Arrays.asList(new Student(60)
+                        , new Student(55)
                         , new Student(65)
                 ));
 
         studentList = school.collect(studentList, p -> p.getScore() <= 70 && p.getScore() >= 50);
-        assertThat(result, is(result));
+        assertThat(studentList, is(result));
     }
 
     @Test
     public void testForCClass() {
         School school = new School();
         List<Student> studentList = new ArrayList<Student>(
-                Arrays.asList(new Student(30)
-                        , new Student(40)
-                        , new Student(60)
-                        , new Student(55)
+                Arrays.asList(new Student(30, "T")
+                        , new Student(40, "A")
+                        , new Student(60, "B")
+                        , new Student(55, "C")
                         , new Student(89)
                         , new Student(100)
                         , new Student(71)
@@ -76,8 +77,8 @@ public class SchoolTest {
                 Arrays.asList(new Student(40)
                         , new Student(30)
                 ));
-
-        studentList = school.collect(studentList, p -> p.getScore() >= 0 && p.getScore() <= 50);
-        assertThat(result, is(result));
+        Map<String, Student> map;
+        map = school.collect1(studentList, p -> p.getScore() >= 0 && p.getScore() <= 50);
+        assertThat(map.toString(), is(result));
     }
 }
