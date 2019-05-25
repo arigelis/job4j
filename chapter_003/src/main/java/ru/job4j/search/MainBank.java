@@ -5,7 +5,6 @@ import java.util.*;
 public class MainBank {
     private Map<BankUser, List<BankAccount>> accountList = new HashMap<>();
 
-
     public static void main(String[] args) {
 
     }
