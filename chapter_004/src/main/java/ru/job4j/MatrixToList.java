@@ -16,12 +16,16 @@ public class MatrixToList {
                 matrix.stream().flatMap(List::stream).collect(Collectors.toList())
         );
 
-        Integer[][] matrixM = new Integer[3][5];
+
+    }
+
+    public List integerToStrem(int a,int b) {
+        Integer[][] matrixM = new Integer[a][b];
         for (int i = 0; i < matrixM.length; i++) {
             for (int j = 0; j < matrixM[i].length; j++) {
                 matrixM[i][j] = (i + 1) * 10 + j;
             }
         }
-        System.out.println(Stream.of(matrixM).flatMap(Arrays::stream).collect(Collectors.toList()));
+        return Stream.of(matrixM).flatMap(Arrays::stream).collect(Collectors.toList());
     }
 }
