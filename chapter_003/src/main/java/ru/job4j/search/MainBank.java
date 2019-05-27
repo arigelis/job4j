@@ -1,6 +1,13 @@
 package ru.job4j.search;
 
-import java.util.*;
+import sun.security.pkcs11.wrapper.Functions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainBank {
     private Map<BankUser, List<BankAccount>> accountList = new HashMap<>();
@@ -16,18 +23,18 @@ public class MainBank {
     }
 
     public void deleteUser(BankUser bankUser) {
-
-        if (accountList.remove(bankUser, null)) {
-            deleteAccountsOfUser(bankUser);
-            System.out.println("User deleted.");
-        }
+        accountList = Stream.of(accountList).filter(e -> !e.equals(bankUser)).collect(Collectors.toMap(Functions.identity(), s->s));
+//        if (accountList.remove(bankUser, null)) {
+//            deleteAccountsOfUser(bankUser);
+//            System.out.println("User deleted.");
+//        }
     }
 
-    public boolean deleteAccountsOfUser(BankUser bankUser) {
-        boolean result = true;
-        result = accountList.remove(bankUser, accountList.get(bankUser));
-        return result;
-    }
+//    public boolean deleteAccountsOfUser(BankUser bankUser) {
+//        boolean result = true;
+//        result = accountList.remove(bankUser, accountList.get(bankUser));
+//        return result;
+//    }
 
     public void addAccountToUser(String passport, BankAccount account) {
         List<BankAccount> tmpAccountList = getUserAccounts(passport);
