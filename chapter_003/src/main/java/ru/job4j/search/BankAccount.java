@@ -8,6 +8,9 @@ public class BankAccount {
         return value;
     }
 
+    public BankAccount() {
+    }
+
     public BankAccount(double value, String requisites) {
         this.value = value;
         this.requisites = requisites;

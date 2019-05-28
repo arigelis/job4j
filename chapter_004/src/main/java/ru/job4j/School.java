@@ -11,7 +11,6 @@ public class School {
     }
 
     Map<String, Student> collect1(List<Student> students, Predicate<Student> predict) {
-        return students.stream().filter(predict).collect
-                (Collectors.toMap(p -> p.getSurname(), p -> p));
+        return students.stream().filter(predict).collect(Collectors.toMap(p -> p.getSurname(), p -> p));
     }
 }

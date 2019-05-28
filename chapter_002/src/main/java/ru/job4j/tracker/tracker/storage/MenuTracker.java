@@ -20,7 +20,7 @@ public class MenuTracker {
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
-    private List<BaseAction> actions = new ArrayList<>();
+    private List<BaseAction> actions = new ArrayList<BaseAction>();
     private final Consumer<String> output;
 
     /**
@@ -63,7 +63,7 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        this.actions.get(key).execute(this.input, this.tracker,this.output);
+        this.actions.get(key).execute(this.input, this.tracker, this.output);
     }
 
     /**

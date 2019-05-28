@@ -19,7 +19,7 @@ public class MatrixToList {
 
     }
 
-    public List integerToStrem(int a,int b) {
+    public List integerToStrem(int a, int b) {
         Integer[][] matrixM = new Integer[a][b];
         for (int i = 0; i < matrixM.length; i++) {
             for (int j = 0; j < matrixM[i].length; j++) {

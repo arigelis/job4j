@@ -1,16 +1,12 @@
 package ru.job4j.search;
 
-import sun.security.pkcs11.wrapper.Functions;
+//import sun.security.pkcs11.wrapper.Functions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MainBank {
-    private Map<BankUser, List<BankAccount>> accountList = new HashMap<>();
+    private Map<BankUser, List<BankAccount>> accountList = new HashMap<BankUser, List<BankAccount>>();
 
     public static void main(String[] args) {
 
@@ -18,23 +14,24 @@ public class MainBank {
 
     public void addUser(BankUser bankUser) {
         if (accountList.get(bankUser).isEmpty()) {
-            accountList.put(bankUser, new ArrayList<>());
+            accountList.put(bankUser, new ArrayList<BankAccount>());
         }
     }
 
     public void deleteUser(BankUser bankUser) {
-        accountList = Stream.of(accountList).filter(e -> !e.equals(bankUser)).collect(Collectors.toMap(Functions.identity(), s->s));
-//        if (accountList.remove(bankUser, null)) {
-//            deleteAccountsOfUser(bankUser);
-//            System.out.println("User deleted.");
-//        }
+//        accountList = Stream.of(accountList).filter(e -> !e.equals(bankUser))
+//                .collect(Collectors.toMap(Functions.identity(), s->s));
+        if (accountList.remove(bankUser, null)) {
+            deleteAccountsOfUser(bankUser);
+            System.out.println("User deleted.");
+        }
     }
 
-//    public boolean deleteAccountsOfUser(BankUser bankUser) {
-//        boolean result = true;
-//        result = accountList.remove(bankUser, accountList.get(bankUser));
-//        return result;
-//    }
+    public boolean deleteAccountsOfUser(BankUser bankUser) {
+        boolean result = true;
+        result = accountList.remove(bankUser, accountList.get(bankUser));
+        return result;
+    }
 
     public void addAccountToUser(String passport, BankAccount account) {
         List<BankAccount> tmpAccountList = getUserAccounts(passport);
@@ -46,18 +43,23 @@ public class MainBank {
         tmpAccountList.remove(account);
     }
 
-    public List<BankAccount> getUserAccounts(String passport) {
-        List<BankAccount> tmpAccountList = new ArrayList<>();
-        for (BankUser bankUser : accountList.keySet()) {
-            if (accountList != null && bankUser.getPassport().equalsIgnoreCase(passport)) {
-                tmpAccountList = accountList.get(bankUser);
-            }
-        }
-        return tmpAccountList;
+    public List<BankAccount> getUserAccounts(final String passport) {
+//        List<BankAccount> tmpAccountList = new ArrayList<BankAccount>();
+//        for (BankUser bankUser : accountList.keySet()) {
+//            if (accountList != null && bankUser.getPassport().equalsIgnoreCase(passport)) {
+//                tmpAccountList = accountList.get(bankUser);
+//            }
+//        }
+//        return tmpAccountList;
+        return this.accountList.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equalsIgnoreCase(passport))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(new ArrayList<>());
     }
 
     public List<BankAccount> getUserAccountsByReq(String requisites) {
-        List<BankAccount> tmpAccountList = new ArrayList<>();
+        List<BankAccount> tmpAccountList = new ArrayList<BankAccount>();
         for (List<BankAccount> bankAccounts : accountList.values()) {
             for (BankAccount bankAccount : bankAccounts) {
                 if (bankAccount != null && bankAccount.getRequisites().equalsIgnoreCase(requisites)) {
@@ -65,7 +67,21 @@ public class MainBank {
                 }
             }
         }
-        return tmpAccountList;
+//        return tmpAccountList;
+
+//        return this.accountList.entrySet().stream()
+//       //V1     .map(Map.Entry::getValue)
+//                .forEach(z -> z.stream().filter(v -> v.getRequisites().equalsIgnoreCase(requisites)).findFirst()
+//                        .orElse(new ArrayList<BankAccount>());//map(Map.Entry::getValue));
+
+//     //V2   return this.accountList.entrySet().stream().map(x -> x.getValue()).collect(Collectors.toList()).forEach(v -> v.stream()
+//                .filter(q -> q.getRequisites().equalsIgnoreCase(requisites)).findFirst());
+
+
+//    //V3    return this.accountList.entrySet().stream()
+//                .forEach(e->e.getValue().stream().filter(z->z.getRequisites().equalsIgnoreCase(requisites)))
+//                .=================;
+
     }
 
     private BankAccount getTransferAcc(String srcPassport, String srcRequisite) {

@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 
 public class ProfilesTest {
     @Test
-    public void ProfileToAddressTest() {
+    public void profileToAddressTest() {
         Profiles profiles = new Profiles();
         List<Profile> profileList = new ArrayList<>(
                 Arrays.asList(
