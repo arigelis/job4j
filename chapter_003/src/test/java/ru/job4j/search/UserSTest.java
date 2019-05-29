@@ -15,9 +15,8 @@ public class UserSTest {
         UserS user1 = new UserS(5, "John");
         UserS user2 = new UserS(0, "Christine");
         Set<UserS> usersMap = userConvert.sort(new ArrayList<UserS>(Arrays.asList(user1, user2)));
-        Set<UserS> expect = new HashSet<>();
-        expect.add(user1);
-        expect.add(user2);
+        Set<UserS> expect = Set.of(
+                user1, user2);
 
         assertThat(usersMap, is(expect));
     }
@@ -28,9 +27,8 @@ public class UserSTest {
         UserS user2 = new UserS(0, "Christine");
         UserS user1 = new UserS(5, "John");
         Set<UserS> usersMap = new HashSet<>(userConvert.sortNameLength(new ArrayList<UserS>(Arrays.asList(user1, user2))));
-        Set<UserS> expect = new HashSet<>();
-        expect.add(user1);
-        expect.add(user2);
+        Set<UserS> expect = Set.of(
+                user1, user2);
         assertThat(usersMap, is(expect));
     }
 
@@ -42,11 +40,8 @@ public class UserSTest {
         UserS user3 = new UserS(20, "Sergey");
         UserS user4 = new UserS(25, "Ivan");
         Set<UserS> usersMap = new HashSet<>(userConvert.sortByAllFields(new ArrayList<UserS>(Arrays.asList(user1, user2, user3, user4))));
-        Set<UserS> expect = new HashSet<>();
-        expect.add(user4);
-        expect.add(user2);
-        expect.add(user3);
-        expect.add(user1);
+        Set<UserS> expect = Set.of(
+                user4, user2, user3, user1);
         assertThat(usersMap, is(expect));
     }
 
