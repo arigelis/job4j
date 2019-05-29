@@ -81,19 +81,22 @@ public class MainBank {
 //    //V3    return this.accountList.entrySet().stream()
 //                .forEach(e->e.getValue().stream().filter(z->z.getRequisites().equalsIgnoreCase(requisites)))
 //                .=================;
-
+        return this.accountList.entrySet().stream()
+                .map(u -> accountList.get(u).stream()
+                        .filter(a -> a.getRequisites().equals(requisites))
+                        .findFirst()
+                        .orElse(null)).collect(Collectors.toList());
     }
 
     private BankAccount getTransferAcc(String srcPassport, String srcRequisite) {
-        List<BankAccount> srcAccountList = getUserAccounts(srcPassport);
-        BankAccount result = null;
-        for (int i = 0; i < srcAccountList.size(); i++) {
-            BankAccount tmpAcc = srcAccountList.get(i);
-            if (tmpAcc.getRequisites().equalsIgnoreCase(srcRequisite)) {
-                result = tmpAcc;
-            }
-        }
-        return result;
+        return this.accountList.keySet().stream()
+                .filter(u -> u.getPassport().equals(srcPassport))
+                .findFirst()
+                .map(u -> accountList.get(u).stream()
+                        .filter(a -> a.getRequisites().equals(srcRequisite))
+                        .findFirst()
+                        .orElse(null))
+                .orElse(null);
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
