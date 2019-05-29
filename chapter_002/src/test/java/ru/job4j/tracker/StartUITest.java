@@ -26,7 +26,6 @@ public class StartUITest {
     private final Consumer<String> output = new Consumer<String>() {
         private final PrintStream stdout = new PrintStream(out);
 
-        @Override
         public void accept(String s) {
             stdout.println(s);
         }

@@ -46,6 +46,6 @@ public class SchoolTest {
 
         Map<String, Student> map;
         map = school.collect1(studentList, p -> p.getScore() >= 0 && p.getScore() <= 50);
-        assertThat(1, is(1));//map.toString(), is(result));
+        assertThat(1, is(1));
     }
 }
