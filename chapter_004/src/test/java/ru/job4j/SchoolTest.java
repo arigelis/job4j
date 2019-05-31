@@ -40,9 +40,7 @@ public class SchoolTest {
         List<Student> studentList = new ArrayList<Student>(
                 Arrays.asList(new Student(30, "T"), new Student(40, "A"), new Student(60, "B"), new Student(55, "C"), new Student(89), new Student(100), new Student(71), new Student(65)));
 
-        Map<String, Student> result = new HashMap<>();
-        result.put("A", new Student(40));
-        result.put("T", new Student(30));
+        Map<String, Student> result = Map.of("A", new Student(40), "T", new Student(30));
 
         Map<String, Student> map;
         map = school.collect1(studentList, p -> p.getScore() >= 0 && p.getScore() <= 50);
