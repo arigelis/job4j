@@ -20,31 +20,20 @@ public class Logic3T {
                 break;
             }
         }
+
         return result;
     }
 
-    public boolean isWinnerX() {
+    public boolean isWinnerX(Predicate <Figure3T> hasMark) {
         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, this.table.length - 1, 1, -1)
-                || this.fillBy(Figure3T::hasMarkX, 0, this.table.length - 1, 1, 0);
-    }
-
-    public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkO, 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, 0, 1, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1)
-                || this.fillBy(Figure3T::hasMarkO, 0, this.table.length - 1, 1, -1)
-                || this.fillBy(Figure3T::hasMarkO, 0, this.table.length - 1, 1, 0);
+                || this.fillBy(hasMark, 0, 0, 0, 1)
+                || this.fillBy(hasMark, 0, 0, 1, 1)
+                || this.fillBy(hasMark, 1, 0, 0, 1)
+                || this.fillBy(hasMark, 0, 1, 1, 0)
+                || this.fillBy(hasMark, this.table.length - 1, 0, 0, 1)
+                || this.fillBy(hasMark, this.table.length - 1, 0, -1, 1)
+                || this.fillBy(hasMark, 0, this.table.length - 1, 1, -1)
+                || this.fillBy(hasMark, 0, this.table.length - 1, 1, 0);
     }
 
     public boolean hasGap() {
