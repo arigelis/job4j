@@ -1,5 +1,6 @@
 package ru.job4j.tictactoe;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class Logic3T {
@@ -24,7 +25,7 @@ public class Logic3T {
         return result;
     }
 
-    public boolean isWinnerX(Predicate <Figure3T> hasMark) {
+    public boolean isWinnerX(Predicate<Figure3T> hasMark) {
         return this.fillBy(hasMark, 0, 0, 1, 0)
                 || this.fillBy(hasMark, 0, 0, 0, 1)
                 || this.fillBy(hasMark, 0, 0, 1, 1)
@@ -37,6 +38,9 @@ public class Logic3T {
     }
 
     public boolean hasGap() {
-        return true;
+        return Arrays.stream(this.table)
+                .flatMap((p) -> Arrays.asList(p).stream())
+                .filter(j -> (j.hasMarkX() || j.hasMarkO()))
+                .count() < 9;
     }
 }
